@@ -1,0 +1,169 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    font-family: 'Arial';
+}
+.Headers {
+    background-color: #5dc331;
+    font-family: Arial;
+    color: White;
+    border: none 0px transparent;
+    height: 35px;
+    text-align: center;
+    font-size: 16px;
+}
+
+
+.login {
+    width: 382px;
+    overflow: hidden;
+    margin: auto;
+    margin: 20 0 0 450px;
+    padding: 80px;
+    background: #5dc331;
+    border-radius: 15px;
+}
+.AddFarmer {
+    width: 382px;
+    overflow: hidden;
+    margin: auto;
+    margin: 20 0 0 450px;
+    padding: 80px;
+    background: #5dc331;
+    border-radius: 15px;
+}
+.ViewFarmer {
+    overflow: hidden;
+    margin: auto;
+    padding: 80px;
+    background:white;
+}
+input
+{
+    width: 300px;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+    padding-left: 8px;
+}
+
+h2 {
+    text-align: center;
+    color: #111;
+    padding: 20px;
+}
+
+label {
+    width: 300px;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+    padding-left: 8px;
+}
+
+
+#Uname {
+    width: 300px;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+    padding-left: 8px;
+}
+
+#Pass {
+    width: 300px;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+    padding-left: 8px;
+}
+
+#log {
+    width: 300px;
+    height: 30px;
+    border: none;
+    border-radius: 17px;
+    padding-left: 7px;
+    color: blue;
+}
+
+span {
+    color: white;
+    font-size: 17px;
+}
+
+a {
+    float: right;
+    background-color: grey;
+}
+
+label {
+    margin-bottom: 20px;
+    font-style: italic;
+    line-height: 1.42857143;
+}
+address {
+    margin-bottom: 20px;
+    font-style: normal;
+    line-height: 1.42857143;
+    text-wrap: normal;
+}
+
+.mydatagrid {
+    width: 80%;
+    border: solid 2px black;
+    min-width: 80%;
+}
+
+.TableHeaders {
+    background-color: #646464;
+    font-family: Arial;
+    color: White;
+    border: none 0px transparent;
+    height: 25px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.rows {
+    background-color: #fff;
+    font-family: Arial;
+    font-size: 14px;
+    color: #000;
+    min-height: 25px;
+    text-align: left;
+    border: none 0px transparent;
+}
+
+
+.selectedrow {
+    background-color: #ff8000;
+    font-family: Arial;
+    color: #5dc331;
+    font-weight: bold;
+    text-align: left;
+}
+
+
+
+.pager {
+    background-color: #646464;
+    font-family: Arial;
+    color: White;
+    height: 30px;
+    text-align: left;
+}
+
+.button {
+
+    background-color: #5dc331; 
+    border:thick;
+    border-color:black;
+    font: bold;
+    color: white;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}

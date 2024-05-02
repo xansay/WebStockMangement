@@ -1,0 +1,346 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="ProtoDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="EMPLOYEE_ID" />
+          </Key>
+          <Property Name="EMPLOYEE_ID" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="FIRST_NAME" Type="varchar" MaxLength="255" />
+          <Property Name="SURNAME" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="FARMER_PRODUCTS">
+          <Key>
+            <PropertyRef Name="PRODUCT_NUMBER" />
+            <PropertyRef Name="FARMER_ID" />
+          </Key>
+          <Property Name="PRODUCT_NUMBER" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FARMER_ID" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="PRODUCT_NAME" Type="varchar" MaxLength="255" />
+          <Property Name="PRODUCT_TYPE" Type="varchar" MaxLength="255" />
+          <Property Name="PROD_DATE" Type="date" />
+          <Property Name="QUANTIY" Type="int" />
+        </EntityType>
+        <EntityType Name="FARMERS">
+          <Key>
+            <PropertyRef Name="FARMER_ID" />
+          </Key>
+          <Property Name="FARMER_ID" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="FIRST_NAME" Type="varchar" MaxLength="255" />
+          <Property Name="SURNAME" Type="varchar" MaxLength="255" />
+          <Property Name="COMPANY" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="PRODUCTS">
+          <Key>
+            <PropertyRef Name="PRODUCT_NUMBER" />
+          </Key>
+          <Property Name="PRODUCT_NUMBER" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PRODUCT_NAME" Type="varchar" MaxLength="255" />
+          <Property Name="PRODUCT_TYPE" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="USERS">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIRST_NAME" Type="varchar" MaxLength="255" />
+          <Property Name="SURNAME" Type="varchar" MaxLength="255" />
+          <Property Name="EMPLOYEE_ID" Type="char" MaxLength="6" />
+          <Property Name="FARMER_ID" Type="char" MaxLength="6" />
+          <Property Name="USER_ROLES" Type="varchar" MaxLength="255" />
+          <Property Name="PasswordHash" Type="binary" MaxLength="64" Nullable="false" />
+          <Property Name="EMAIL" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_EMPLOYEE1">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+          <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FARMERS1">
+          <End Role="FARMERS" Type="Self.FARMERS" Multiplicity="1" />
+          <End Role="FARMER_PRODUCTS" Type="Self.FARMER_PRODUCTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FARMERS">
+              <PropertyRef Name="FARMER_ID" />
+            </Principal>
+            <Dependent Role="FARMER_PRODUCTS">
+              <PropertyRef Name="FARMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FARMERS2">
+          <End Role="FARMERS" Type="Self.FARMERS" Multiplicity="0..1" />
+          <End Role="USERS" Type="Self.USERS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FARMERS">
+              <PropertyRef Name="FARMER_ID" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="FARMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTS2">
+          <End Role="PRODUCTS" Type="Self.PRODUCTS" Multiplicity="1" />
+          <End Role="FARMER_PRODUCTS" Type="Self.FARMER_PRODUCTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTS">
+              <PropertyRef Name="PRODUCT_NUMBER" />
+            </Principal>
+            <Dependent Role="FARMER_PRODUCTS">
+              <PropertyRef Name="PRODUCT_NUMBER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProtoDatabaseModelStoreContainer">
+          <EntitySet Name="EMPLOYEE" EntityType="Self.EMPLOYEE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FARMER_PRODUCTS" EntityType="Self.FARMER_PRODUCTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FARMERS" EntityType="Self.FARMERS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRODUCTS" EntityType="Self.PRODUCTS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_EMPLOYEE1" Association="Self.FK_EMPLOYEE1">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEE" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FARMERS1" Association="Self.FK_FARMERS1">
+            <End Role="FARMERS" EntitySet="FARMERS" />
+            <End Role="FARMER_PRODUCTS" EntitySet="FARMER_PRODUCTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FARMERS2" Association="Self.FK_FARMERS2">
+            <End Role="FARMERS" EntitySet="FARMERS" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTS2" Association="Self.FK_PRODUCTS2">
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+            <End Role="FARMER_PRODUCTS" EntitySet="FARMER_PRODUCTS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ProtoDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="EMPLOYEE">
+          <Key>
+            <PropertyRef Name="EMPLOYEE_ID" />
+          </Key>
+          <Property Name="EMPLOYEE_ID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="FIRST_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SURNAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="USERS" Relationship="Self.FK_EMPLOYEE1" FromRole="EMPLOYEE" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="FARMER_PRODUCTS">
+          <Key>
+            <PropertyRef Name="PRODUCT_NUMBER" />
+            <PropertyRef Name="FARMER_ID" />
+          </Key>
+          <Property Name="PRODUCT_NUMBER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FARMER_ID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="PRODUCT_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PRODUCT_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PROD_DATE" Type="DateTime" Precision="0" />
+          <Property Name="QUANTIY" Type="Int32" />
+          <NavigationProperty Name="FARMER" Relationship="Self.FK_FARMERS1" FromRole="FARMER_PRODUCTS" ToRole="FARMERS" />
+          <NavigationProperty Name="PRODUCT" Relationship="Self.FK_PRODUCTS2" FromRole="FARMER_PRODUCTS" ToRole="PRODUCTS" />
+        </EntityType>
+        <EntityType Name="FARMER">
+          <Key>
+            <PropertyRef Name="FARMER_ID" />
+          </Key>
+          <Property Name="FARMER_ID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="FIRST_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SURNAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="COMPANY" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FARMER_PRODUCTS" Relationship="Self.FK_FARMERS1" FromRole="FARMERS" ToRole="FARMER_PRODUCTS" />
+          <NavigationProperty Name="USERS" Relationship="Self.FK_FARMERS2" FromRole="FARMERS" ToRole="USERS" />
+        </EntityType>
+        <EntityType Name="PRODUCT">
+          <Key>
+            <PropertyRef Name="PRODUCT_NUMBER" />
+          </Key>
+          <Property Name="PRODUCT_NUMBER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PRODUCT_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PRODUCT_TYPE" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="FARMER_PRODUCTS" Relationship="Self.FK_PRODUCTS2" FromRole="PRODUCTS" ToRole="FARMER_PRODUCTS" />
+        </EntityType>
+        <EntityType Name="USER">
+          <Key>
+            <PropertyRef Name="USER_ID" />
+          </Key>
+          <Property Name="USER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIRST_NAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="SURNAME" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="EMPLOYEE_ID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="FARMER_ID" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="USER_ROLES" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PasswordHash" Type="Binary" MaxLength="64" FixedLength="true" Nullable="false" />
+          <Property Name="EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="EMPLOYEE" Relationship="Self.FK_EMPLOYEE1" FromRole="USERS" ToRole="EMPLOYEE" />
+          <NavigationProperty Name="FARMER" Relationship="Self.FK_FARMERS2" FromRole="USERS" ToRole="FARMERS" />
+        </EntityType>
+        <Association Name="FK_EMPLOYEE1">
+          <End Role="EMPLOYEE" Type="Self.EMPLOYEE" Multiplicity="0..1" />
+          <End Role="USERS" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EMPLOYEE">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="EMPLOYEE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FARMERS1">
+          <End Role="FARMERS" Type="Self.FARMER" Multiplicity="1" />
+          <End Role="FARMER_PRODUCTS" Type="Self.FARMER_PRODUCTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FARMERS">
+              <PropertyRef Name="FARMER_ID" />
+            </Principal>
+            <Dependent Role="FARMER_PRODUCTS">
+              <PropertyRef Name="FARMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCTS2">
+          <End Role="PRODUCTS" Type="Self.PRODUCT" Multiplicity="1" />
+          <End Role="FARMER_PRODUCTS" Type="Self.FARMER_PRODUCTS" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PRODUCTS">
+              <PropertyRef Name="PRODUCT_NUMBER" />
+            </Principal>
+            <Dependent Role="FARMER_PRODUCTS">
+              <PropertyRef Name="PRODUCT_NUMBER" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FARMERS2">
+          <End Role="FARMERS" Type="Self.FARMER" Multiplicity="0..1" />
+          <End Role="USERS" Type="Self.USER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FARMERS">
+              <PropertyRef Name="FARMER_ID" />
+            </Principal>
+            <Dependent Role="USERS">
+              <PropertyRef Name="FARMER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ProtoDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="EMPLOYEEs" EntityType="Self.EMPLOYEE" />
+          <EntitySet Name="FARMER_PRODUCTS" EntityType="Self.FARMER_PRODUCTS" />
+          <EntitySet Name="FARMERS" EntityType="Self.FARMER" />
+          <EntitySet Name="PRODUCTS" EntityType="Self.PRODUCT" />
+          <EntitySet Name="USERS" EntityType="Self.USER" />
+          <AssociationSet Name="FK_EMPLOYEE1" Association="Self.FK_EMPLOYEE1">
+            <End Role="EMPLOYEE" EntitySet="EMPLOYEEs" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FARMERS1" Association="Self.FK_FARMERS1">
+            <End Role="FARMERS" EntitySet="FARMERS" />
+            <End Role="FARMER_PRODUCTS" EntitySet="FARMER_PRODUCTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCTS2" Association="Self.FK_PRODUCTS2">
+            <End Role="PRODUCTS" EntitySet="PRODUCTS" />
+            <End Role="FARMER_PRODUCTS" EntitySet="FARMER_PRODUCTS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FARMERS2" Association="Self.FK_FARMERS2">
+            <End Role="FARMERS" EntitySet="FARMERS" />
+            <End Role="USERS" EntitySet="USERS" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ProtoDatabaseModelStoreContainer" CdmEntityContainer="ProtoDatabaseEntities">
+          <EntitySetMapping Name="EMPLOYEEs">
+            <EntityTypeMapping TypeName="ProtoDatabaseModel.EMPLOYEE">
+              <MappingFragment StoreEntitySet="EMPLOYEE">
+                <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+                <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FARMER_PRODUCTS">
+            <EntityTypeMapping TypeName="ProtoDatabaseModel.FARMER_PRODUCTS">
+              <MappingFragment StoreEntitySet="FARMER_PRODUCTS">
+                <ScalarProperty Name="PRODUCT_NUMBER" ColumnName="PRODUCT_NUMBER" />
+                <ScalarProperty Name="FARMER_ID" ColumnName="FARMER_ID" />
+                <ScalarProperty Name="PRODUCT_NAME" ColumnName="PRODUCT_NAME" />
+                <ScalarProperty Name="PRODUCT_TYPE" ColumnName="PRODUCT_TYPE" />
+                <ScalarProperty Name="PROD_DATE" ColumnName="PROD_DATE" />
+                <ScalarProperty Name="QUANTIY" ColumnName="QUANTIY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FARMERS">
+            <EntityTypeMapping TypeName="ProtoDatabaseModel.FARMER">
+              <MappingFragment StoreEntitySet="FARMERS">
+                <ScalarProperty Name="FARMER_ID" ColumnName="FARMER_ID" />
+                <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+                <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
+                <ScalarProperty Name="COMPANY" ColumnName="COMPANY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRODUCTS">
+            <EntityTypeMapping TypeName="ProtoDatabaseModel.PRODUCT">
+              <MappingFragment StoreEntitySet="PRODUCTS">
+                <ScalarProperty Name="PRODUCT_NUMBER" ColumnName="PRODUCT_NUMBER" />
+                <ScalarProperty Name="PRODUCT_NAME" ColumnName="PRODUCT_NAME" />
+                <ScalarProperty Name="PRODUCT_TYPE" ColumnName="PRODUCT_TYPE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USERS">
+            <EntityTypeMapping TypeName="ProtoDatabaseModel.USER">
+              <MappingFragment StoreEntitySet="USERS">
+                <ScalarProperty Name="USER_ID" ColumnName="USER_ID" />
+                <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+                <ScalarProperty Name="SURNAME" ColumnName="SURNAME" />
+                <ScalarProperty Name="EMPLOYEE_ID" ColumnName="EMPLOYEE_ID" />
+                <ScalarProperty Name="FARMER_ID" ColumnName="FARMER_ID" />
+                <ScalarProperty Name="USER_ROLES" ColumnName="USER_ROLES" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

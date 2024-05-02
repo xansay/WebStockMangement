@@ -1,0 +1,17 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="login.master.cs" Inherits="WebStockMangement.login" %>
+
+<!DOCTYPE html>
+
+
+<html>
+<head runat="server" style="background-color: #00CC66; font-size: large; font-family: Calibri">
+    <link rel="stylesheet" type="text/css" href="Content/SiteStyleSheet.css">    
+    <title></title>
+  
+</head>
+<body>
+
+    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+</body>
+</html>

@@ -1,0 +1,25 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="HomePage.master.cs" Inherits="WebStockMangement.HomePage" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server" style="background-color: #00CC66; font-size: large; font-family: Calibri">
+    <link rel="stylesheet" type="text/css" href="Content/SiteStyleSheet.css">    
+    <title></title>
+  
+</head>
+<body>
+    <div class="Headers">   
+          <h1>FARMIMARK</h1>
+     
+
+    </div>
+            <div class="button" style="width: 335px">
+             <button runat="server" href="~/AddProduct" class="button"><b>ADD PRODUCTS</b> </button>  
+             <button runat="server" href="~/ViewFarmersProducts" class="button"><b>PRODUCTS</b> </button>
+
+             </div>
+    <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+</body>
+</html>

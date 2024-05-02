@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a949a63c9e49489bb12cede2c750507d" Name="Diagram1">
+        <EntityTypeShape EntityType="ProtoDatabaseModel.EMPLOYEE" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProtoDatabaseModel.FARMER_PRODUCTS" Width="1.5" PointX="2.875" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProtoDatabaseModel.FARMER" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProtoDatabaseModel.PRODUCT" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ProtoDatabaseModel.USER" Width="1.5" PointX="6" PointY="3.125" IsExpanded="true" />
+        <AssociationConnector Association="ProtoDatabaseModel.FK_EMPLOYEE1" ManuallyRouted="false" />
+        <AssociationConnector Association="ProtoDatabaseModel.FK_FARMERS1" ManuallyRouted="false" />
+        <AssociationConnector Association="ProtoDatabaseModel.FK_PRODUCTS2" ManuallyRouted="false" />
+        <AssociationConnector Association="ProtoDatabaseModel.FK_FARMERS2" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
